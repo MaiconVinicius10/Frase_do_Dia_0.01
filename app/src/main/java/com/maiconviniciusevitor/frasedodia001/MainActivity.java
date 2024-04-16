@@ -9,7 +9,8 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    TextView resultado;
+    //criando meu atributos
+    String[] frase={"Frase 01, Frase 02,Frase 03"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,33 +21,26 @@ public class MainActivity extends AppCompatActivity {
 
     //criando metodo gerarFrase
     public void gerarFrase(View view){
-        // criando variavel frase
-        resultado=findViewById(R.id.text_resultado);
-        //setando frase
-        String [] frase={"  Oi bom dia ",
-                "Acorda vamos matar mais um leão",
-                "    Vamos ganhar"
-                        };
-        //criando meus numeros aleatório
-        int aleatorio=new Random().nextInt(3);
 
-        resultado.setText(" "+frase[aleatorio]);
+        TextView texto = findViewById(R.id.text_resultado);
 
+        int numeroAleatorio= new Random().nextInt(3);
+
+        String frase1 = frase[numeroAleatorio];
+
+        texto.setText(frase1);
 
     }
 
     public void gerarFraseAleatoria(View view){
-        resultado= findViewById(R.id.text_resultado);
+      TextView texto = findViewById(R.id.text_resultado);
 
-        String frase[]={"olá","pedro","maicon","camila"};
+      String textoResultado="";
 
-        String resultado1="";
+      for(String frase:frase){
+      textoResultado= textoResultado + frase+"\n";
 
-        for(int i=0; i<=3; i++){
-
-            resultado1 = resultado1 + frase[i];
-
-        }
-        resultado.setText(resultado1);
+      }
+      texto.setText(textoResultado);
     }
 }
