@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    //criando meu atributos
-    String[] frase={"Frase 01, Frase 02,Frase 03"};
 
+    FraseDoDia fraseDoDia = new FraseDoDia();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,28 +20,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //criando metodo gerarFrase
-    public void gerarFrase(View view){
+   //criar metodo gerarFraseAleatoria
+    public void gerarFraseAleatoria(View view ){
 
-        TextView texto = findViewById(R.id.text_resultado);
-
+        //recebendo componente de exibição
+        TextView exibir=findViewById(R.id.text_resultado);
+        //criando meu aleatoria
         int numeroAleatorio= new Random().nextInt(3);
-
-        String frase1 = frase[numeroAleatorio];
-
-        texto.setText(frase1);
-
+        //criando variavel resultado
+        String resultado= fraseDoDia.frases[numeroAleatorio];
+        //exibindo resultado
+        exibir.setText(resultado);
     }
 
-    public void gerarFraseAleatoria(View view){
-      TextView texto = findViewById(R.id.text_resultado);
+    //criar metodo exibirfrase
+    public void exibirFrasesAleatiria(View view){
+        //criando meu textview pra exibir
+        TextView exibir = findViewById(R.id.text_resultado);
+        //criando variavel resultado
+        String resultado="";
+        //criando minha função simplicada de looper
+        for(String frase : fraseDoDia.frases){
+        resultado = resultado +  frase+ "\n";
+        }
+        exibir.setText(resultado);
 
-      String textoResultado="";
-
-      for(String frase:frase){
-      textoResultado= textoResultado + frase+"\n";
-
-      }
-      texto.setText(textoResultado);
     }
 }
